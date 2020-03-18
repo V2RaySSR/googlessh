@@ -16,24 +16,3 @@ blue "网站：www.v2rayssr.com （已开启禁止国内访问）"
 blue "YouTube：波仔分享"
 green "=============================================="
 read -s -n1 -p "若同意上述协议，请按任意键继续 ... "
-sudo -i
-blue "======================="
-red "    请设置你的VPS密码"
-blue "======================="
-read your_password
-echo $your_password | passwd --stdin root
-
-if cat /proc/version | grep -Eqi "debian|centos"; then
-	sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
-	sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-elif cat /proc/version | grep -Eqi "ubuntu"; then
-	sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-	sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-fi
-
-green "==========================="
-blue " 推荐VPS连接工具 FinalShell"
-green "官方网站：www.hostbuf.com"
-green "==========================="
-read -s -n1 -p "设置成功，按任意键继续重启VPS ... "
-reboot
