@@ -16,12 +16,11 @@ blue "网站：www.v2rayssr.com （已开启禁止国内访问）"
 blue "YouTube：波仔分享"
 green "=============================================="
 read -s -n1 -p "若同意上述协议，请按任意键继续 ... "
-
+sudo -i
 blue "======================="
 red "    请设置你的VPS密码"
 blue "======================="
 read your_password
-sudo -i
 echo $your_password | passwd --stdin root
 
 if cat /proc/version | grep -Eqi "debian|centos"; then
